@@ -12,7 +12,7 @@ import java.io.*;
 
 public class Character
 {
-    private String name;
+    private String name, fname, lname;
     private String gender;
     private double looks;
     private double smarts;
@@ -21,9 +21,12 @@ public class Character
     private double atheleticism;
     private boolean alive;
     private int wealth;
+    private int age;
     
-    public Character(String n, double l, double s, double c, double h, double a, String g){
-        name = n;
+    public Character(String n, String n2, double l, double s, double c, double h, double a, String g){
+        fname = n;
+        lname = n2;
+        name = fname + " " + lname;
         looks = l;
         smarts = s;
         craziness = c;
@@ -31,7 +34,36 @@ public class Character
         atheleticism = a;
         gender = g;
         alive = true;
+        age = 0;
         wealth = 0;
+    }
+    public Character(String n, String n2, double l, double s, double c, double h, double a, String g, int ag){
+        fname = n;
+        lname = n2;
+        name = fname + " " + lname;
+        looks = l;
+        smarts = s;
+        craziness = c;
+        health = h;
+        atheleticism = a;
+        gender = g;
+        alive = true;
+        age = ag;
+        wealth = 0;
+    }
+    public Character(String n, String n2, double l, double s, double c, double h, double a, String g, int ag, int w){
+        fname = n;
+        lname = n2;
+        name = fname + " " + lname;
+        looks = l;
+        smarts = s;
+        craziness = c;
+        health = h;
+        atheleticism = a;
+        gender = g;
+        alive = true;
+        age = ag;
+        wealth = w;
     }
     public void setWealth(int w){
         wealth = w;
@@ -48,14 +80,28 @@ public class Character
     public void setHealth(double h){
         health = h;
     }
-    public void setName(String n){
-        name = n;
+    public void setfName(String n){
+        fname = n;
+        name = fname + " " + lname;
+    }
+    public void setlName(String n){
+        lname = n;
+        name = fname + " " + lname;
     }
     public void setAtheleticism(double a){
         atheleticism = a;
     }
+    public void Age(){
+        age += 1;
+    }
     public String getGender(){
         return gender;
+    }
+    public String getlName(){
+        return lname;
+    }
+    public String getfName(){
+        return fname;
     }
     public int getWealth(){
         return wealth;
@@ -78,16 +124,12 @@ public class Character
     public double getAtheleticism(){
         return atheleticism;
     }
+    public int getAge(){
+        return age;
+    }
     public String toString(){
-        return (String.format("Name: %s%nLooks: %f%nSmarts: %f%nCraziness: %f%nAtheleticism %f%nHealth: %f%n",name,looks,smarts,craziness,atheleticism,health));
+        return (String.format("Name: %s%nAge: %f%nWealth: %f%nLooks: %f%nSmarts: %f%nAtheleticism %f%nHealth: %f%n",name,age,looks,smarts,atheleticism,health));
     } 
-    
-    public static String createMaleName()throws IOException{
-        return(newFirstMaleName() + " " + newLastName());
-    }
-    public static String createFemaleName()throws IOException{
-        return(newFirstFemaleName() + " " + newLastName());
-    }
     
     public static String newFirstMaleName()throws IOException{
     Scanner reader = new Scanner(new File("texts/keys/firstmale.txt"));
@@ -176,18 +218,21 @@ public static String newFirstFemaleName()throws IOException{
     }
 }
         
-public Character createChar()throws IOException{
+public static Character createCharacter()throws IOException{
     String g = createGender();
     if (g.equals("Male")){
-        Character character = new Character(createMaleName(), createLooks(), createSmarts(), createCraziness(), createHealth(), createAtheleticism(), g); 
+        Character character = new Character(newFirstMaleName(), newLastName(), createLooks(), createSmarts(), createCraziness(), createHealth(), createAtheleticism(), g); 
         return character;
     }
     else {
-        Character character = new Character(createFemaleName(), createLooks(), createSmarts(), createCraziness(), createHealth(), createAtheleticism(), g);
+        Character character = new Character(newFirstFemaleName(), newLastName(), createLooks(), createSmarts(), createCraziness(), createHealth(), createAtheleticism(), g);
         return character;
     }
 }
 
+public boolean isAlive(){
+    return alive;
+}
 public void kill(){
     alive = false;
 }
