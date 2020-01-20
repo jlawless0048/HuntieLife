@@ -1,0 +1,9 @@
+You've been attacked by a wolf!
+
+Oh no!
+
+What ever will you do!
+
+1.) Run Away!
+2.) Fight!
+3.) Cry!

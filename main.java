@@ -1,33 +1,17 @@
 
 /**
- * Write a description of class main here.
+ * Runs the game!
  *
- * @author (your name)
- * @version (a version number or a date)
+ * Hunter Stewart
+ * 1.0
  */
+import java.util.Scanner;
+import java.util.Random;
+import java.io.*;
+
 public class main
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class main
-     */
-    public main()
-    {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public static void main(String [] args){
+        
     }
 }
