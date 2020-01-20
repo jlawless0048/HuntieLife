@@ -14,6 +14,7 @@ public class Character
 {
     private String name, fname, lname;
     private String gender;
+    private String deathMessage;
     private double looks;
     private double smarts;
     private double craziness;
@@ -22,8 +23,11 @@ public class Character
     private boolean alive;
     private int wealth;
     private int age;
+    private int iq;
+    private boolean college;
     
     public Character(String n, String n2, double l, double s, double c, double h, double a, String g){
+        Random lotto = new Random();
         fname = n;
         lname = n2;
         name = fname + " " + lname;
@@ -36,8 +40,12 @@ public class Character
         alive = true;
         age = 0;
         wealth = 0;
+        iq = lotto.nextInt(5) + 1;
+        deathMessage = "";
+        college = false;
     }
     public Character(String n, String n2, double l, double s, double c, double h, double a, String g, int ag){
+        Random lotto = new Random();
         fname = n;
         lname = n2;
         name = fname + " " + lname;
@@ -50,8 +58,12 @@ public class Character
         alive = true;
         age = ag;
         wealth = 0;
+        iq = lotto.nextInt(5) + 1;
+        deathMessage = "";
+        college = false;
     }
     public Character(String n, String n2, double l, double s, double c, double h, double a, String g, int ag, int w){
+        Random lotto = new Random();
         fname = n;
         lname = n2;
         name = fname + " " + lname;
@@ -64,6 +76,18 @@ public class Character
         alive = true;
         age = ag;
         wealth = w;
+        iq = lotto.nextInt(5) + 1;
+        deathMessage = "";
+        college = false;
+    }
+    public void enroll(){
+        college = true;
+    }
+    public boolean isinCollege(){
+        return college;
+    }
+    public void setDeath(String m){
+        deathMessage = m;
     }
     public void setWealth(int w){
         wealth = w;
@@ -94,8 +118,9 @@ public class Character
     public void setAtheleticism(double a){
         atheleticism = a;
     }
-    public void Age(){
-        age += 1;
+    
+    public String getDeath(){
+        return deathMessage;
     }
     public String getGender(){
         return gender;
@@ -131,12 +156,12 @@ public class Character
         return age;
     }
     public String toString(){
-        return (String.format("Name: %s%nAge: %f%nWealth: %f%nLooks: %f%nSmarts: %f%nAtheleticism %f%nHealth: %f%n",name,age,looks,smarts,atheleticism,health));
+        return (String.format("%n%nName: %s%nAge: %d%nWealth: %d%nLooks: %f%nSmarts: %f%nAtheleticism %f%nHealth: %f%n",name,age,wealth,looks,smarts,atheleticism,health));
     } 
     
     public static String newFirstMaleName()throws IOException{
-    Scanner reader = new Scanner(new File("texts/keys/firstmale.txt"));
-    Scanner readerTwo = new Scanner(new File("texts/keys/firstmale.txt")); 
+    Scanner reader = new Scanner(new File("texts/firstmale.txt"));
+    Scanner readerTwo = new Scanner(new File("texts/firstmale.txt")); 
     int arrayCount = 0;
     while(reader.hasNext()){
         reader.nextLine();
@@ -154,8 +179,8 @@ public class Character
     return(key[lotto.nextInt(count)]);
 }
 public static String newFirstFemaleName()throws IOException{
-    Scanner reader = new Scanner(new File("texts/keys/firstfemale.txt"));
-    Scanner readerTwo = new Scanner(new File("texts/keys/firstfemale.txt")); 
+    Scanner reader = new Scanner(new File("texts/firstfemale.txt"));
+    Scanner readerTwo = new Scanner(new File("texts/firstfemale.txt")); 
     int arrayCount = 0;
     while(reader.hasNext()){
         reader.nextLine();
@@ -173,8 +198,8 @@ public static String newFirstFemaleName()throws IOException{
     return(key[lotto.nextInt(count)]);
 }
     public static String newLastName()throws IOException{
-    Scanner reader = new Scanner(new File("texts/keys/last.txt"));
-    Scanner readerTwo = new Scanner(new File("texts/keys/last.txt")); 
+    Scanner reader = new Scanner(new File("texts/last.txt"));
+    Scanner readerTwo = new Scanner(new File("texts/last.txt")); 
     int arrayCount = 0;
     while(reader.hasNext()){
         reader.nextLine();
@@ -232,6 +257,48 @@ public static Character createCharacter()throws IOException{
         return character;
     }
 }
+
+public void Age(){
+    Random lotto = new Random();
+    age += 1;
+    double oldlooks = looks;
+    looks -= ((lotto.nextInt(15) + 1) - ((atheleticism / 10) + (300/(age + 1))));
+    if (looks > oldlooks){
+        looks = oldlooks;
+    }
+    if (looks > 100){
+        looks = 100;
+    }
+    if (looks < 0){
+        looks = 0;
+    }
+    smarts -= ((lotto.nextInt(10) + 1) - ((lotto.nextInt(1) + 1) * iq));
+    if (smarts > 100){
+        smarts = 100;
+    }
+    if (smarts < 0){
+        smarts = 0;
+    }
+    double oldAtheleticism = atheleticism;
+    atheleticism -= ((lotto.nextInt(15) + 1) - ((atheleticism / 10) + (100/(age + 1))));
+    if (atheleticism > oldAtheleticism){
+        atheleticism = oldAtheleticism;
+    }
+    if (atheleticism > 100){
+        atheleticism = 100;
+    }
+    if (atheleticism < 0){
+        atheleticism = 0;
+    }
+    health -= ((lotto.nextInt(8) + 1) -  (200/(age + 1)));
+    if (health > 100){
+        health = 100;
+    }
+    if (health < 0){
+        health = 0;
+    }
+}
+
 
 public boolean isAlive(){
     return alive;

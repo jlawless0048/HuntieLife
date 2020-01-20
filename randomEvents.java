@@ -21,7 +21,7 @@ public class randomEvents
         int choice;
         
         Character main = m;
-        Scanner reader = new Scanner(new File("animalAttack.txt"));
+        Scanner reader = new Scanner(new File("events/animalAttack.txt"));
 
         while (reader.hasNextLine())
         {
@@ -30,7 +30,7 @@ public class randomEvents
         
         choice = reader2.nextInt();
         if(choice == 1){
-            System.out.println("Why in god's name did you think you could outrun a wolf?");
+            main.setDeath("Why in god's name did you think you could outrun a wolf?");
             main.kill();
         }
         else if (choice == 2){
@@ -42,7 +42,7 @@ public class randomEvents
                 main.setHealth(main.getHealth() - (lotto.nextInt(30) + 20));
             }
             else {
-                System.out.println("You gave it a valiant effort! But you were mauled by the wolf!");
+                main.setDeath("You gave it a valiant effort! But you were mauled by the wolf!");
                 main.kill();
             }
         }
@@ -53,7 +53,7 @@ public class randomEvents
                 System.out.println("Suddenly, a bolt of lighting strikes the wolf! Perhaps god was saddened by your tears.");
             }
             else{
-                System.out.println("The wolf is not dissuaded by your tears. Though, it eats you guiltily.");
+                main.setDeath("The wolf is not dissuaded by your tears. Though, it eats you guiltily.");
                 main.kill();
             }
         }
@@ -62,7 +62,7 @@ public class randomEvents
         int choice;
         
         Character main = m;
-        Scanner reader = new Scanner(new File("alleyAttack.txt"));
+        Scanner reader = new Scanner(new File("events/alleyAttack.txt"));
 
         while (reader.hasNextLine())
         {
@@ -84,7 +84,7 @@ public class randomEvents
             }
         }
         else{
-            System.out.println("They say don't bring a knife to a gunfight. Well... you brought your fists.");
+            main.setDeath("They say don't bring a knife to a gunfight. Well... you brought your fists.");
             main.kill();
         }
     }
