@@ -156,7 +156,7 @@ public class Character
         return age;
     }
     public String toString(){
-        return (String.format("%n%nName: %s%nAge: %d%nWealth: %d%nLooks: %f%nSmarts: %f%nAtheleticism %f%nHealth: %f%n",name,age,wealth,looks,smarts,atheleticism,health));
+        return (String.format("%n%nName: %s%nAge: %d%nWealth: %d%nLooks: %f%nSmarts: %f%nAtheleticism %f%nHealth: %f%nAlive: %b%n%n",name,age,wealth,looks,smarts,atheleticism,health,alive));
     } 
     
     public static String newFirstMaleName()throws IOException{

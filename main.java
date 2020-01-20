@@ -8,6 +8,7 @@
 import java.util.Scanner;
 import java.util.Random;
 import java.io.*;
+import java.util.Arrays;
 
 public class main
 {
@@ -18,6 +19,8 @@ public class main
         int year = 0;
         int choice;
         int focus;
+        int friendnum = 0;
+        int count = 0;
 
         Character main = Character.createCharacter();
         Character dad = new Character(Character.newFirstMaleName(), main.getlName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), "Male", lotto.nextInt(27) + 18, lotto.nextInt(100000));
@@ -26,39 +29,41 @@ public class main
         int siblingNum = lotto.nextInt(4);
         Character[] siblings = new Character[siblingNum];    
         
-        for (int i = siblingNum - 1; i > 0; i--){
+        for (int i = siblingNum; i > 0; i--){
             String g = Character.createGender();
             if (g.equals("Male")){
-                siblings[i] = new Character(Character.newFirstMaleName(), main.getlName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(10) + 1); 
+                siblings[i - 1] = new Character(Character.newFirstMaleName(), main.getlName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(10) + 1); 
             }
             else {
-                siblings[i] = new Character(Character.newFirstFemaleName(), main.getlName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(10) + 1);
+                siblings[i - 1] = new Character(Character.newFirstFemaleName(), main.getlName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(10) + 1);
             }
         }
         
         Character[] yourAge = new Character[50];
         
-        for (int i = 49; i > 0; i--){
+        for (int i = 50; i > 0; i--){
             String g = Character.createGender();
             if (g.equals("Male")){
-                yourAge[i] = new Character(Character.newFirstMaleName(), Character.newLastName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(2)-1 , lotto.nextInt(100000)); 
+                yourAge[i - 1] = new Character(Character.newFirstMaleName(), Character.newLastName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(2)-1 , lotto.nextInt(100000)); 
             }
             else {
-                yourAge[i] = new Character(Character.newFirstFemaleName(), Character.newLastName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(2)-1, lotto.nextInt(100000));
+                yourAge[i - 1] = new Character(Character.newFirstFemaleName(), Character.newLastName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(2)-1, lotto.nextInt(100000));
             }
         }
         
         Character[] everyoneElse = new Character[100];
         
-        for (int i = 99; i > 0; i--){
+        for (int i = 100; i > 0; i--){
             String g = Character.createGender();
             if (g.equals("Male")){
-                everyoneElse[i] = new Character(Character.newFirstMaleName(), Character.newLastName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(50) + 1, lotto.nextInt(100000)); 
+                everyoneElse[i - 1] = new Character(Character.newFirstMaleName(), Character.newLastName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(50) + 1, lotto.nextInt(100000)); 
             }
             else {
-                everyoneElse[i] = new Character(Character.newFirstFemaleName(), Character.newLastName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(50) + 1, lotto.nextInt(100000));
+                everyoneElse[i - 1] = new Character(Character.newFirstFemaleName(), Character.newLastName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(50) + 1, lotto.nextInt(100000));
             }
         }
+        
+        Character[] friends = new Character[150];
         
         while (main.isAlive()){
             if(main.getHealth() <= 0){
@@ -73,14 +78,14 @@ public class main
                 main.Age();
                 dad.Age();
                 mom.Age();
-                for (int i = siblingNum - 1; i > 0; i--){
-                    siblings[i].Age();
+                for (int i = siblingNum; i > 0; i--){
+                    siblings[i - 1].Age();
                 }
-                for (int i = 49; i > 0; i--){
-                    yourAge[i].Age();
+                for (int i = 50; i > 0; i--){
+                    yourAge[i - 1].Age();
                 }
-                for (int i = 99; i > 0; i--){
-                    everyoneElse[i].Age();
+                for (int i = 100; i > 0; i--){
+                    everyoneElse[i - 1].Age();
                 }
                 if (main.getHealth() <= 0){
                     death.lessThanZeroDeath(main);
@@ -94,26 +99,26 @@ public class main
                     death.lessThanZeroDeath(mom);
                     mom.kill();
                 }
-                for (int i = siblingNum - 1; i > 0; i--){
-                    if (siblings[i].getHealth() <= 0){
-                        death.lessThanZeroDeath(siblings[i]);
-                        siblings[i].kill();
+                for (int i = siblingNum; i > 0; i--){
+                    if (siblings[i - 1].getHealth() <= 0){
+                        death.lessThanZeroDeath(siblings[i - 1]);
+                        siblings[i - 1].kill();
                     }
                 }
-                for (int i = 49; i > 0; i--){
-                    if (yourAge[i].getHealth() <= 0){
-                        death.lessThanZeroDeath(yourAge[i]);
-                        yourAge[i].kill();
+                for (int i = 50; i > 0; i--){
+                    if (yourAge[i - 1].getHealth() <= 0){
+                        death.lessThanZeroDeath(yourAge[i - 1]);
+                        yourAge[i - 1].kill();
                     }
                 }
-                for (int i = 99; i > 0; i--){
-                    if (everyoneElse[i].getHealth() <= 0){
-                        death.lessThanZeroDeath(everyoneElse[i]);
-                        everyoneElse[i].kill();
+                for (int i = 100; i > 0; i--){
+                    if (everyoneElse[i - 1].getHealth() <= 0){
+                        death.lessThanZeroDeath(everyoneElse[i - 1]);
+                        everyoneElse[i - 1].kill();
                     }
                 }
                 while(true){
-                    System.out.printf("1.) Next Year%n2.) Set Year Focus%n3.) See Family%n4.) See Everyone Else You Know");
+                    System.out.printf("1.) Next Year%n2.) Set Year Focus%n3.) See Family%n4.) See Random Others");
                     System.out.println(main);
                     choice = reader.nextInt();
                     if (choice == 1){
@@ -121,16 +126,16 @@ public class main
                     }
                     if (choice == 2){
                         if(main.getAge() < 13){
-                            System.out.printf("1.) Play Outside%n2.) Read%n3.) Play Dress-Up%n4.) Do Chores");
+                            System.out.printf("%n1.) Play Outside%n2.) Read%n3.) Play Dress-Up%n4.) Do Chores%n");
                         }
                         else if(main.getAge() < 18){
-                            System.out.printf("1.) Practice Sports%n2.) Study%n3.) Put More Effort Into Clothing%n4.) Get A Part-Time Job");
+                            System.out.printf("%n1.) Practice Sports%n2.) Study%n3.) Put More Effort Into Clothing%n4.) Get A Part-Time Job%n");
                         }
                         else if(main.getAge() < 23 && main.isinCollege()){
-                            System.out.printf("1.) Go to the Gym%n2.) Study%n3.) Put More Effort Into Clothing%n4.) Get A Part-Time Job");
+                            System.out.printf("%n1.) Go to the Gym%n2.) Study%n3.) Put More Effort Into Clothing%n4.) Get A Part-Time Job%n");
                         }
                         else{
-                            System.out.printf("1.) Go to the Gym%n2.) Read a Book%n3.) Try a new Look%n4.) Get A Job");
+                            System.out.printf("%n1.) Go to the Gym%n2.) Read a Book%n3.) Try a new Look%n4.) Get A Job%n");
                         }
                         choice = reader.nextInt();
                         if(choice == 1){
@@ -148,17 +153,74 @@ public class main
                         choice = 0;
                     }
                     if (choice == 3){
-                        System.out.println("Parents:");
+                        System.out.printf("%nParents:%n");
                         System.out.print(dad);
                         System.out.print(mom);
-                        System.out.println("Siblings:");
-                        for (int i = siblingNum - 1; i > 0; i--){
-                            System.out.print(siblings[i]);
+                        System.out.printf("%nSiblings:%n");
+                        for (int i = siblingNum ; i > 0; i--){
+                            System.out.print(siblings[i - 1]);
                         }
-                        
+                        System.out.printf("%nFriends:%n");
+                        for (int i = friendnum ; i > 0; i--){
+                            System.out.print(friends[friendnum - 1]);
+                        }
+                        choice = 0;
                     }
-                    if (choice == 4){
-                        
+                    if (choice == 4 && main.getAge() > 13){
+                        int num1 = 0;
+                        int num2 = 0;
+                        int num3 = 0;
+                        while (true){
+                            num1 = lotto.nextInt(50);
+                            if(yourAge[num1].isAlive() && !Arrays.asList(friends).contains(yourAge[num1])){
+                                break;                        
+                            }
+                        }
+                        while (true){
+                            num2 = lotto.nextInt(100);
+                            if(everyoneElse[num2].isAlive() && !Arrays.asList(friends).contains(everyoneElse[num2])){
+                                break;
+                            }
+                        }
+                        while (true){
+                            num3 = lotto.nextInt(100);
+                            if(everyoneElse[num3].isAlive() && !Arrays.asList(friends).contains(everyoneElse[num3])){
+                                break;
+                            }
+                        }
+                        System.out.printf("%nFolks You Saw:%n");
+                        System.out.print(yourAge[num1]);
+                        System.out.print(everyoneElse[num2]);
+                        System.out.print(everyoneElse[num3]);
+                        System.out.printf("%n1.) Befriend Person 1%n2.) Befriend Person 2%n3.) Befriend Person 3%n4.) Leave Without Saying a Word%n");
+                        choice = reader.nextInt();
+                        if (choice == 1){
+                            friends[friendnum] = yourAge[num1];
+                            friendnum++;
+                        }
+                        else if (choice == 2){
+                            friends[friendnum] = everyoneElse[num2];
+                            friendnum++;
+                        }
+                        else if (choice == 3){
+                            friends[friendnum] = everyoneElse[num3];
+                            friendnum++;
+                        }
+                    }
+                    else{
+                        System.out.printf("%nYou are a bit too young to be goin out and about meeting new people...%n");
+                    }
+                    focusing.focusTime(focus, main);
+                    focusing.focusTime(lotto.nextInt(4) + 1, dad);
+                    focusing.focusTime(lotto.nextInt(4) + 1, mom);
+                    for (int i = siblingNum; i > 0; i--){
+                        focusing.focusTime(lotto.nextInt(4) + 1, siblings[i - 1]);
+                    }
+                    for (int i = 50; i > 0; i--){
+                        focusing.focusTime(lotto.nextInt(4) + 1, yourAge[i - 1]);
+                    }
+                    for (int i = 100; i > 0; i--){
+                        focusing.focusTime(lotto.nextInt(4) + 1, everyoneElse[i - 1]);
                     }
                 }
             }

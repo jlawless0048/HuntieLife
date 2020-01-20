@@ -1,19 +1,19 @@
 
 /**
- * Write a description of class focus here.
+ * Write a description of class jobs here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class focus
+public class jobs
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class focus
+     * Constructor for objects of class jobs
      */
-    public focus()
+    public jobs()
     {
         // initialise instance variables
         x = 0;
