@@ -68,6 +68,9 @@ public class Character
     public void setWealth(int w){
         wealth = w;
     }
+    public void setAge(int a){
+        age = a;
+    }
     public void setLooks(double l){
         looks = l;
     }

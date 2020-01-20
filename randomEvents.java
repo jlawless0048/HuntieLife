@@ -14,7 +14,7 @@ public class randomEvents
     static Scanner reader2 = new Scanner(System.in);
     static Random lotto = new Random();
     
-    public void getEvent(Character m){
+    public static void getEvent(Character m){
         
     }
     public static void animalAttack(Character m)throws IOException{

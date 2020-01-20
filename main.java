@@ -35,9 +35,9 @@ public class main
             }
         }
         
-        Character[] everyoneElse = new Character[200];
+        Character[] everyoneElse = new Character[100];
         
-        for (int i = 200; i > 0; i--){
+        for (int i = 100; i > 0; i--){
             String g = Character.createGender();
             if (g.equals("Male")){
                 everyoneElse[i] = new Character(Character.newFirstMaleName(), Character.newLastName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(50) + 1, lotto.nextInt(100000)); 
@@ -48,7 +48,27 @@ public class main
         }
         
         while (main.isAlive()){
-            
+            if(main.getHealth() <= 0){
+                main.kill();
+            }
+            if(lotto.nextInt(25) == 0 && main.isAlive()){
+                randomEvents.getEvent(main);
+            }
+            if (main.isAlive()){
+                year++;
+                main.Age();
+                dad.Age();
+                mom.Age();
+                for (int i = siblingNum; i > 0; i--){
+                    siblings[i].Age();
+                }
+                for (int i = 100; i > 0; i--){
+                    everyoneElse[i].Age();
+                }
+            }
         }
+        
+        System.out.println("You are dead!"); 
+        System.out.println(main);
     }
 }
