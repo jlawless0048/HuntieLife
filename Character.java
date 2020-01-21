@@ -345,10 +345,10 @@ public void yearlyPay(){
 public void yearlyDeduction(){
     Random lotto = new Random();
     if(college){
-        wealth -= 20000 * (lotto.nextInt(3) +  1);
+        wealth -= (20000 * (lotto.nextInt(3) +  1));
     }
     else{
-        wealth -= 10000 * (lotto.nextInt(6) + 1);
+        wealth -= (10000 * (lotto.nextInt(6) + 1));
     }
 }
 

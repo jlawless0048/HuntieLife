@@ -193,7 +193,12 @@ public class main
                         }
                         choice = 0;
                     }
-                    if (choice == 4 && main.getAge() > 13){
+                    if (choice == 4){
+                        if(main.getAge() < 10){
+                            System.out.printf("%nYou are a bit too young to be goin out and about meeting new people...%n");
+                        }
+                        else
+                        {
                         int num1 = 0;
                         int num2 = 0;
                         int num3 = 0;
@@ -234,10 +239,9 @@ public class main
                             friendnum++;
                         }
                     }
-                    else{
-                        System.out.printf("%nYou are a bit too young to be goin out and about meeting new people...%n");
                     }
-                    focusing.focusTime(focus, main);
+                }
+                focusing.focusTime(focus, main);
                     focusing.focusTime(lotto.nextInt(4) + 1, dad);
                     focusing.focusTime(lotto.nextInt(4) + 1, mom);
                     for (int i = siblingNum; i > 0; i--){
@@ -249,31 +253,30 @@ public class main
                     for (int i = 100; i > 0; i--){
                         focusing.focusTime(lotto.nextInt(4) + 1, everyoneElse[i - 1]);
                     }
+                    main.yearlyPay();
                     if (main.getAge() > 18){
-                        main.yearlyPay();
                         main.yearlyDeduction();
                     }
+                    dad.yearlyPay();
                     if (dad.getAge() > 18){
-                        dad.yearlyPay();
                         dad.yearlyDeduction();
                     }
+                    mom.yearlyPay();
                     if (mom.getAge() > 18){
-                        mom.yearlyPay();
                         mom.yearlyDeduction();
                     }
                     for (int i = siblingNum ; i > 0; i--){
+                            siblings[i - 1].yearlyPay();
                             if(siblings[i - 1].getAge() > 18){
-                                siblings[i - 1].yearlyPay();
                                 siblings[i - 1].yearlyDeduction();
                             }
                     }
                     for (int i = 100; i > 0; i--){
+                            everyoneElse[i - 1].yearlyPay();
                             if (everyoneElse[i - 1].getAge() > 18){
-                                everyoneElse[i - 1].yearlyPay();
                                 everyoneElse[i - 1].yearlyDeduction();
                             }
-                        }
-                }
+                    }
             }
         }
         
