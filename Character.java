@@ -138,7 +138,9 @@ public class Character
     public void setAtheleticism(double a){
         atheleticism = a;
     }
-    
+    public String getJob(){
+        return job;
+    }
     public String getDeath(){
         return deathMessage;
     }
@@ -176,7 +178,7 @@ public class Character
         return age;
     }
     public String toString(){
-        return (String.format("%n%nName: %s%nAge: %d%nMoney: %d%nCareer: %s%nLooks: %f%nSmarts: %f%nAtheleticism %f%nHealth: %f%nAlive: %b%n%n",name,age,wealth,job,looks,smarts,atheleticism,health,alive));
+        return (String.format("%n%nName: %s%nAge: %d%nWealth: %d%nCareer: %s%nLooks: %f%nSmarts: %f%nAtheleticism %f%nHealth: %f%nAlive: %b%n%n",name,age,wealth,job,looks,smarts,atheleticism,health,alive));
     } 
     
     public static String newFirstMaleName()throws IOException{
@@ -327,13 +329,13 @@ public void yearlyPay(){
         wealth += 50;
     }
     else if(job.equals("Good Part-Time-Job")){
-        wealth += 25000;
+        wealth += 30000;
     }
     else if(job.equals("Decent Part-Time-Job")){
-        wealth += 15000;
+        wealth += 20000;
     }
     else if(job.equals("Poor Part-Time-Job")){
-        wealth += 10000;
+        wealth += 15000;
     }
     else if(job.equals("Great Job")){
         wealth += 100000;
@@ -342,7 +344,7 @@ public void yearlyPay(){
         wealth += 75000;
     }
     else if(job.equals("Decent Job")){
-        wealth += 55000;
+        wealth += 60000;
     }
     else if(job.equals("Poor Job")){
         wealth += 45000;
