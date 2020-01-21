@@ -14,9 +14,9 @@ public class main extends javax.swing.JFrame
 {
     public static Scanner reader = new Scanner(System.in);
     public static Random lotto = new Random();
+    private static int choice;
        public static void main(String [] args) throws IOException{
         int year = 0;
-        int choice;
         int focus = 0;
         int friendnum = 0;
         int count = 0;
@@ -380,6 +380,7 @@ public class main extends javax.swing.JFrame
     
                    jButton1.setText("Next Year");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
@@ -387,6 +388,7 @@ public class main extends javax.swing.JFrame
 
         jButton2.setText("Year Focus");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
@@ -395,6 +397,7 @@ public class main extends javax.swing.JFrame
         jButton3.setText("See Family");
         jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
@@ -402,6 +405,7 @@ public class main extends javax.swing.JFrame
 
         jButton4.setText(" See Random Others");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
@@ -458,18 +462,18 @@ public class main extends javax.swing.JFrame
             
     }                       
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        textArea1.append("Test = Works !!! \n");
+        choice = 1;
     }  
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        choice = 2;
     }                                        
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        choice = 3;
     }                                        
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        choice = 4;
     }     
 
  
