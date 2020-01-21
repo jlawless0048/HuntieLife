@@ -120,6 +120,7 @@ public class main
                 if (main.getAge() == 18 && main.getSmarts() > 40){
                     choice = 0;
                     System.out.printf("You are 18, and smart enough to get in. Enroll in College?%n%n1.) Yes%n2.) No%n");
+                    choice = reader.nextInt();
                     if (choice == 1){
                         System.out.println("You've Been Enrolled. Enjoy those student loans!");
                         main.enroll();

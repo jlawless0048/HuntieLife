@@ -304,7 +304,7 @@ public void Age(){
     if (atheleticism < 0){
         atheleticism = 0;
     }
-    health -= ((lotto.nextInt(8) + 1) -  (200/(age + 1)));
+    health -= ((lotto.nextInt(10) + 1) -  (200/(age + 1)));
     if (health > 100){
         health = 100;
     }
@@ -345,10 +345,10 @@ public void yearlyPay(){
 public void yearlyDeduction(){
     Random lotto = new Random();
     if(college){
-        wealth -= (20000 * (lotto.nextInt(3) +  1));
+        wealth -= (30000 * (lotto.nextInt(3) +  1));
     }
     else{
-        wealth -= (10000 * (lotto.nextInt(6) + 1));
+        wealth -= (15000 * (lotto.nextInt(6) + 1));
     }
 }
 
