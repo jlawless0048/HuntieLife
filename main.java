@@ -10,20 +10,43 @@ import java.util.Random;
 import java.io.*;
 import java.util.Arrays;
 
-public class main
+public class main extends javax.swing.JFrame
 {
     public static Scanner reader = new Scanner(System.in);
     public static Random lotto = new Random();
-    
-    public static void main(String [] args) throws IOException{
+       public static void main(String [] args) throws IOException{
         int year = 0;
         int choice;
         int focus;
         int friendnum = 0;
         int count = 0;
+        
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
 
-        Character main = Character.createCharacter();
-        Character dad = new Character(Character.newFirstMaleName(), main.getlName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), "Male", lotto.nextInt(27) + 18, lotto.nextInt(100000));
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new main().setVisible(true);
+            }
+        });
+        
+        Character mainChar = Character.createCharacter();
+        Character dad = new Character(Character.newFirstMaleName(), mainChar.getlName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), "Male", lotto.nextInt(27) + 18, lotto.nextInt(100000));
         Character mom = new Character(Character.newFirstFemaleName(), dad.getlName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), "Female", lotto.nextInt(17) + 18, lotto.nextInt(100000));
         
         int siblingNum = lotto.nextInt(4);
@@ -32,10 +55,10 @@ public class main
         for (int i = siblingNum; i > 0; i--){
             String g = Character.createGender();
             if (g.equals("Male")){
-                siblings[i - 1] = new Character(Character.newFirstMaleName(), main.getlName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(10) + 1); 
+                siblings[i - 1] = new Character(Character.newFirstMaleName(), mainChar.getlName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(10) + 1); 
             }
             else {
-                siblings[i - 1] = new Character(Character.newFirstFemaleName(), main.getlName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(10) + 1);
+                siblings[i - 1] = new Character(Character.newFirstFemaleName(), mainChar.getlName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), g, lotto.nextInt(10) + 1);
             }
         }
         
@@ -65,17 +88,17 @@ public class main
         
         Character[] friends = new Character[150];
         
-        while (main.isAlive()){
-            if(main.getHealth() <= 0){
-                main.kill();
+        while (mainChar.isAlive()){
+            if(mainChar.getHealth() <= 0){
+                mainChar.kill();
             }
-            if(lotto.nextInt(25) == 0 && main.isAlive()){
-                randomEvents.getEvent(main);
+            if(lotto.nextInt(25) == 0 && mainChar.isAlive()){
+                randomEvents.getEvent(mainChar);
             }
-            if (main.isAlive()){
+            if (mainChar.isAlive()){
                 year++;
                 focus = 0;
-                main.Age();
+                mainChar.Age();
                 dad.Age();
                 mom.Age();
                 for (int i = siblingNum; i > 0; i--){
@@ -87,9 +110,9 @@ public class main
                 for (int i = 100; i > 0; i--){
                     everyoneElse[i - 1].Age();
                 }
-                if (main.getHealth() <= 0){
-                    death.lessThanZeroDeath(main);
-                    main.kill();
+                if (mainChar.getHealth() <= 0){
+                    death.lessThanZeroDeath(mainChar);
+                    mainChar.kill();
                 }
                 if (dad.getHealth() <= 0){
                     death.lessThanZeroDeath(dad);
@@ -117,13 +140,13 @@ public class main
                         everyoneElse[i - 1].kill();
                     }
                 }
-                if (main.getAge() == 18 && main.getSmarts() > 40){
+                if (mainChar.getAge() == 18 && mainChar.getSmarts() > 40){
                     choice = 0;
                     System.out.printf("You are 18, and smart enough to get in. Enroll in College?%n%n1.) Yes%n2.) No%n");
                     choice = reader.nextInt();
                     if (choice == 1){
                         System.out.println("You've Been Enrolled. Enjoy those student loans!");
-                        main.enroll();
+                        mainChar.enroll();
                     }
                     else{
                         System.out.println("You've dodged those loans. Hopefully, it's worth it.");
@@ -147,19 +170,19 @@ public class main
                 }
                 while(true){
                     System.out.printf("%n1.) Next Year%n2.) Set Year Focus%n3.) See Family%n4.) See Random Others%n");
-                    System.out.println(main);
+                    System.out.println(mainChar);
                     choice = reader.nextInt();
                     if (choice == 1){
                         break;
                     }
                     if (choice == 2){
-                        if(main.getAge() < 13){
+                        if(mainChar.getAge() < 13){
                             System.out.printf("%n1.) Play Outside%n2.) Read%n3.) Play Dress-Up%n4.) Do Chores%n");
                         }
-                        else if(main.getAge() < 18){
+                        else if(mainChar.getAge() < 18){
                             System.out.printf("%n1.) Practice Sports%n2.) Study%n3.) Put More Effort Into Clothing%n4.) Get A Part-Time Job%n");
                         }
-                        else if(main.getAge() < 23 && main.isinCollege()){
+                        else if(mainChar.getAge() < 23 && mainChar.isinCollege()){
                             System.out.printf("%n1.) Go to the Gym%n2.) Study%n3.) Put More Effort Into Clothing%n4.) Get A Part-Time Job%n");
                         }
                         else{
@@ -195,7 +218,7 @@ public class main
                         choice = 0;
                     }
                     if (choice == 4){
-                        if(main.getAge() < 10){
+                        if(mainChar.getAge() < 10){
                             System.out.printf("%nYou are a bit too young to be goin out and about meeting new people...%n");
                         }
                         else
@@ -242,7 +265,7 @@ public class main
                     }
                     }
                 }
-                focusing.focusTime(focus, main);
+                focusing.focusTime(focus, mainChar);
                     focusing.focusTime(lotto.nextInt(4) + 1, dad);
                     focusing.focusTime(lotto.nextInt(4) + 1, mom);
                     for (int i = siblingNum; i > 0; i--){
@@ -254,9 +277,9 @@ public class main
                     for (int i = 100; i > 0; i--){
                         focusing.focusTime(lotto.nextInt(4) + 1, everyoneElse[i - 1]);
                     }
-                    main.yearlyPay();
-                    if (main.getAge() > 18){
-                        main.yearlyDeduction();
+                    mainChar.yearlyPay();
+                    if (mainChar.getAge() > 18){
+                        mainChar.yearlyDeduction();
                     }
                     dad.yearlyPay();
                     if (dad.getAge() > 18){
@@ -282,7 +305,165 @@ public class main
         }
         
         System.out.println("You are dead!"); 
-        System.out.println(main.getDeath());
-        System.out.println(main);
+        System.out.println(mainChar.getDeath());
+        System.out.println(mainChar);
     }
+    
+        /**
+         * Creates new form main
+         */
+    public main() {
+            initComponents();
+    }
+    
+    private void initComponents() {
+    
+            jScrollPane2 = new javax.swing.JScrollPane();
+            //jTable1 = new javax.swing.JTable();
+            jLabel1 = new javax.swing.JLabel();
+            jScrollPane3 = new javax.swing.JScrollPane();
+            jTable2 = new javax.swing.JTable();
+            jButton1 = new javax.swing.JButton();
+            jButton2 = new javax.swing.JButton();
+            jButton3 = new javax.swing.JButton();
+            jButton4 = new javax.swing.JButton();
+            textArea1 = new java.awt.TextArea();
+    
+            
+            jScrollPane2.setViewportView(jTable1);
+    
+            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    
+            jLabel1.setText("Huntie Life 1.0");
+    
+            jTable2.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                    {"Name", null},
+                    {"Age", null},
+                    {"Wealth", null},
+                    {"Looks", null},
+                    {"Smarts", null},
+                    {"Atheleticism", null},
+                    {"Health", null}
+                },
+                new String [] {
+                    "Stat", "Value"
+                }
+            ) {
+                boolean[] canEdit = new boolean [] {
+                    false, false
+                };
+    
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit [columnIndex];
+                }
+            });
+            jScrollPane3.setViewportView(jTable2);
+    
+                   jButton1.setText("Next Year");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Year Focus");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("See Family");
+        jButton3.setToolTipText("");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText(" See Random Others");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+            textArea1.setEditable(false);
+    
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton2)
+                        .addComponent(jButton3)
+                        .addComponent(jButton4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 10, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton1)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addContainerGap())
+            );
+            //textArea1.getAccessibleContext().setAccessibleName("textOut");
+    
+    
+            pack();
+            
+            
+    }                       
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        textArea1.append("Test = Works !!! \n");
+    }  
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }                                        
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }                                        
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }     
+
+ 
+    // Variables declaration                   
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private java.awt.TextArea textArea1;
 }
