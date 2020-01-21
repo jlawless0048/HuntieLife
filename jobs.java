@@ -18,13 +18,13 @@ public class jobs
         }
         else if (character.getAge() < 18){
             if (character.getSmarts() >  90){
-                character.setJob("Good Part-Time Job");
+                character.setJob("Good Part-Time-Job");
             }
             else if(character.getSmarts() > 40){
-                character.setJob("Decent Part-Time Job");
+                character.setJob("Decent Part-Time-Job");
             }
             else{
-                character.setJob("Poor Part-Time Job");
+                character.setJob("Poor Part-Time-Job");
             }
         }
         else if (character.getAge() <23 && character.isinCollege()){

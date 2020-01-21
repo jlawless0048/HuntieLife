@@ -14,7 +14,9 @@ public class main extends javax.swing.JFrame
 {
     public static Scanner reader = new Scanner(System.in);
     public static Random lotto = new Random();
-    private static int choice;
+    public static int choice;
+    public static boolean blah;
+    
        public static void main(String [] args) throws IOException{
         int year = 0;
         int focus = 0;
@@ -96,8 +98,32 @@ public class main extends javax.swing.JFrame
                 randomEvents.getEvent(mainChar);
             }
             if (mainChar.isAlive()){
+   
                 year++;
                 mainChar.Age();
+                jTable2.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                    {"Name", mainChar.getName()},
+                    {"Age", mainChar.getAge()},
+                    {"Wealth", mainChar.getWealth()},
+                    {"Job", mainChar.getJob()},
+                    {"Looks", mainChar.getLooks()},
+                    {"Smarts", mainChar.getSmarts()},
+                    {"Atheleticism", mainChar.getAtheleticism()},
+                    {"Health", mainChar.getHealth()}
+                },
+                new String [] {
+                    "Stat", "Value"
+                }
+            ) {
+                boolean[] canEdit = new boolean [] {
+                    false, false
+                };
+    
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit [columnIndex];
+                }
+            });
                 dad.Age();
                 mom.Age();
                 for (int i = siblingNum; i > 0; i--){
@@ -141,8 +167,15 @@ public class main extends javax.swing.JFrame
                 }
                 if (mainChar.getAge() == 18 && mainChar.getSmarts() > 40){
                     choice = 0;
-                    System.out.printf("You are 18, and smart enough to get into college. Enroll in College?%n%n1.) Yes%n2.) No%n");
-                    choice = reader.nextInt();
+                    System.out.printf("You are 18, and smart enough to get in. Enroll in College?%n%n1.) Yes%n2.) No%n");
+                    while(blah){
+                        try{
+                            Thread.sleep(200);
+                        }
+                        catch(InterruptedException e){ 
+                        }
+                    }
+                    blah = true;
                     if (choice == 1){
                         System.out.println("You've Been Enrolled. Enjoy those student loans!");
                         mainChar.enroll();
@@ -168,7 +201,7 @@ public class main extends javax.swing.JFrame
                     }
                 }
                 if (mainChar.isinCollege() && mainChar.getAge() == 23){
-                    System.out.println("Congrats! You've graduated. Time to start paying back those loans...");
+                    System.out.println("Congrats! You've graduated. Hopefully, this is worthwhile.");
                     mainChar.deEnroll();
                     mainChar.graduate();
                 }
@@ -187,9 +220,19 @@ public class main extends javax.swing.JFrame
                     }
                 }
                 while(true){
+                    
                     System.out.printf("%n1.) Next Year%n2.) Set Year Focus%n3.) See Family%n4.) See Random Others%n");
-                    System.out.println(mainChar);
-                    choice = reader.nextInt();
+                    while(blah){
+                        try{
+                            Thread.sleep(200);
+                        }
+                        catch(InterruptedException e){ 
+                        }
+                    }
+                        textArea1.selectAll();
+                        textArea1.replaceSelection("");
+
+                    blah = true;
                     if (choice == 1){
                         break;
                     }
@@ -206,7 +249,14 @@ public class main extends javax.swing.JFrame
                         else{
                             System.out.printf("%n1.) Go to the Gym%n2.) Read a Book%n3.) Try a new Look%n4.) Get A Job%n");
                         }
-                        choice = reader.nextInt();
+                        while(blah){
+                        try{
+                            Thread.sleep(200);
+                        }
+                        catch(InterruptedException e){ 
+                        }
+                    }
+                    blah = true;
                         if(choice == 1){
                             focus = 1;
                         }
@@ -237,7 +287,7 @@ public class main extends javax.swing.JFrame
                     }
                     if (choice == 4){
                         if(mainChar.getAge() < 10){
-                            System.out.printf("%nYou are a bit too young to be going out and about meeting new people...%n");
+                            System.out.printf("%nYou are a bit too young to be goin out and about meeting new people...%n");
                         }
                         else
                         {
@@ -267,7 +317,14 @@ public class main extends javax.swing.JFrame
                         System.out.print(everyoneElse[num2]);
                         System.out.print(everyoneElse[num3]);
                         System.out.printf("%n1.) Befriend Person 1%n2.) Befriend Person 2%n3.) Befriend Person 3%n4.) Leave Without Saying a Word%n");
-                        choice = reader.nextInt();
+                        while(blah){
+                        try{
+                            Thread.sleep(200);
+                        }
+                        catch(InterruptedException e){ 
+                        }
+                    }
+                    blah = true;
                         if (choice == 1){
                             friends[friendnum] = yourAge[num1];
                             friendnum++;
@@ -283,17 +340,30 @@ public class main extends javax.swing.JFrame
                     }
                     }
                 }
+                if(mainChar.isAlive()){
                 focusing.focusTime(focus, mainChar);
+            }
+                if(dad.isAlive()){
                     focusing.focusTime(lotto.nextInt(4) + 1, dad);
+                }
+                if(mom.isAlive()){
                     focusing.focusTime(lotto.nextInt(4) + 1, mom);
+                }
+                
                     for (int i = siblingNum; i > 0; i--){
+                        if(siblings[i - 1].isAlive()){
                         focusing.focusTime(lotto.nextInt(4) + 1, siblings[i - 1]);
                     }
+                    }
                     for (int i = 50; i > 0; i--){
+                        if(yourAge[i - 1].isAlive()){
                         focusing.focusTime(lotto.nextInt(4) + 1, yourAge[i - 1]);
                     }
+                    }
                     for (int i = 100; i > 0; i--){
+                        if(everyoneElse[i - 1].isAlive()){
                         focusing.focusTime(lotto.nextInt(4) + 1, everyoneElse[i - 1]);
+                    }
                     }
                     mainChar.yearlyPay();
                     if (mainChar.getAge() > 18){
@@ -322,7 +392,7 @@ public class main extends javax.swing.JFrame
             }
         }
         
-        System.out.println("You died!"); 
+        System.out.println("You are dead!"); 
         System.out.println(mainChar.getDeath());
         System.out.println(mainChar);
     }
@@ -336,7 +406,7 @@ public class main extends javax.swing.JFrame
     
     private void initComponents() {
     
-            jScrollPane2 = new javax.swing.JScrollPane();
+            jScrollPane2 = new javax.swing.JScrollPane(textArea1);
             //jTable1 = new javax.swing.JTable();
             jLabel1 = new javax.swing.JLabel();
             jScrollPane3 = new javax.swing.JScrollPane();
@@ -345,8 +415,7 @@ public class main extends javax.swing.JFrame
             jButton2 = new javax.swing.JButton();
             jButton3 = new javax.swing.JButton();
             jButton4 = new javax.swing.JButton();
-            textArea1 = new java.awt.TextArea();
-    
+            textArea1 = new javax.swing.JTextArea();
             
             jScrollPane2.setViewportView(jTable1);
     
@@ -359,6 +428,7 @@ public class main extends javax.swing.JFrame
                     {"Name", null},
                     {"Age", null},
                     {"Wealth", null},
+                    {"Job", null},
                     {"Looks", null},
                     {"Smarts", null},
                     {"Atheleticism", null},
@@ -378,7 +448,7 @@ public class main extends javax.swing.JFrame
             });
             jScrollPane3.setViewportView(jTable2);
     
-                   jButton1.setText("Next Year");
+                   jButton1.setText("1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -386,7 +456,7 @@ public class main extends javax.swing.JFrame
             }
         });
 
-        jButton2.setText("Year Focus");
+        jButton2.setText("2");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -394,7 +464,7 @@ public class main extends javax.swing.JFrame
             }
         });
 
-        jButton3.setText("See Family");
+        jButton3.setText("3");
         jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             @Override
@@ -403,7 +473,7 @@ public class main extends javax.swing.JFrame
             }
         });
 
-        jButton4.setText(" See Random Others");
+        jButton4.setText("4");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -455,27 +525,45 @@ public class main extends javax.swing.JFrame
                     .addContainerGap())
             );
             //textArea1.getAccessibleContext().setAccessibleName("textOut");
-    
+             PrintStream printStream = new PrintStream(new CustomOutputStream(textArea1));
+            System.setOut(printStream);
+            System.setErr(printStream);
     
             pack();
             
             
     }                       
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {  
+        blah = false;
         choice = 1;
     }  
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        blah = false;
         choice = 2;
     }                                        
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {    
+        blah = false;
         choice = 3;
     }                                        
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {     
+        blah = false;
         choice = 4;
     }     
-
+    public class CustomOutputStream extends OutputStream {
+        private javax.swing.JTextArea textArea;
+     
+        public CustomOutputStream(javax.swing.JTextArea textArea) {
+            this.textArea = textArea;
+        }
+     
+        @Override
+        public void write(int b) throws IOException {
+            textArea.append(String.valueOf((char)b));
+            textArea.setCaretPosition(textArea.getDocument().getLength());
+        }
+}
  
     // Variables declaration                   
     private javax.swing.JButton jButton1;
@@ -486,6 +574,6 @@ public class main extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private java.awt.TextArea textArea1;
+    private static javax.swing.JTable jTable2;
+    private static javax.swing.JTextArea  textArea1;
 }
