@@ -141,7 +141,7 @@ public class main extends javax.swing.JFrame
                 }
                 if (mainChar.getAge() == 18 && mainChar.getSmarts() > 40){
                     choice = 0;
-                    System.out.printf("You are 18, and smart enough to get in. Enroll in College?%n%n1.) Yes%n2.) No%n");
+                    System.out.printf("You are 18, and smart enough to get into college. Enroll in College?%n%n1.) Yes%n2.) No%n");
                     choice = reader.nextInt();
                     if (choice == 1){
                         System.out.println("You've Been Enrolled. Enjoy those student loans!");
@@ -168,7 +168,7 @@ public class main extends javax.swing.JFrame
                     }
                 }
                 if (mainChar.isinCollege() && mainChar.getAge() == 23){
-                    System.out.println("Congrats! You've graduated. Hopefully, this is worthwhile.");
+                    System.out.println("Congrats! You've graduated. Time to start paying back those loans...");
                     mainChar.deEnroll();
                     mainChar.graduate();
                 }
@@ -237,7 +237,7 @@ public class main extends javax.swing.JFrame
                     }
                     if (choice == 4){
                         if(mainChar.getAge() < 10){
-                            System.out.printf("%nYou are a bit too young to be goin out and about meeting new people...%n");
+                            System.out.printf("%nYou are a bit too young to be going out and about meeting new people...%n");
                         }
                         else
                         {
@@ -322,7 +322,7 @@ public class main extends javax.swing.JFrame
             }
         }
         
-        System.out.println("You are dead!"); 
+        System.out.println("You died!"); 
         System.out.println(mainChar.getDeath());
         System.out.println(mainChar);
     }
