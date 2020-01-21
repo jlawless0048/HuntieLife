@@ -15,17 +15,19 @@ public class Character
     private String name, fname, lname;
     private String gender;
     private String deathMessage;
+    private String job;
     private double looks;
     private double smarts;
     private double craziness;
     private double health;
     private double atheleticism;
-    private boolean alive;
     private int wealth;
     private int age;
     private int iq;
     private boolean college;
-    
+    private boolean educated;
+    private boolean alive;
+
     public Character(String n, String n2, double l, double s, double c, double h, double a, String g){
         Random lotto = new Random();
         fname = n;
@@ -41,8 +43,10 @@ public class Character
         age = 0;
         wealth = 0;
         iq = lotto.nextInt(5) + 1;
-        deathMessage = "";
+        deathMessage = "Not Dead Yet!";
+        job = "None";
         college = false;
+        educated = false;
     }
     public Character(String n, String n2, double l, double s, double c, double h, double a, String g, int ag){
         Random lotto = new Random();
@@ -59,8 +63,10 @@ public class Character
         age = ag;
         wealth = 0;
         iq = lotto.nextInt(5) + 1;
-        deathMessage = "";
+        deathMessage = "Not Dead Yet!";
+        job = "None";
         college = false;
+        educated = false;
     }
     public Character(String n, String n2, double l, double s, double c, double h, double a, String g, int ag, int w){
         Random lotto = new Random();
@@ -77,14 +83,22 @@ public class Character
         age = ag;
         wealth = w;
         iq = lotto.nextInt(5) + 1;
-        deathMessage = "";
+        deathMessage = "Not Dead Yet!";
+        job = "None";
         college = false;
+        educated = false;
+    }
+    public void setJob(String j){
+        job = j;
     }
     public void enroll(){
         college = true;
     }
     public boolean isinCollege(){
         return college;
+    }
+    public boolean isEducated(){
+        return educated;
     }
     public void setDeath(String m){
         deathMessage = m;
