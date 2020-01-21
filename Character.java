@@ -94,6 +94,12 @@ public class Character
     public void enroll(){
         college = true;
     }
+    public void deEnroll(){
+        college = false;
+    }
+    public void graduate(){
+        educated = true;
+    }
     public boolean isinCollege(){
         return college;
     }
@@ -170,7 +176,7 @@ public class Character
         return age;
     }
     public String toString(){
-        return (String.format("%n%nName: %s%nAge: %d%nWealth: %d%nLooks: %f%nSmarts: %f%nAtheleticism %f%nHealth: %f%nAlive: %b%n%n",name,age,wealth,looks,smarts,atheleticism,health,alive));
+        return (String.format("%n%nName: %s%nAge: %d%nWealth: %d%nCareer: %s%nLooks: %f%nSmarts: %f%nAtheleticism %f%nHealth: %f%nAlive: %b%n%n",name,age,wealth,job,looks,smarts,atheleticism,health,alive));
     } 
     
     public static String newFirstMaleName()throws IOException{
@@ -304,7 +310,7 @@ public void Age(){
     if (atheleticism < 0){
         atheleticism = 0;
     }
-    health -= ((lotto.nextInt(10) + 1) -  (200/(age + 1)));
+    health -= ((lotto.nextInt(10) + 1) -  (150/(age + 1)));
     if (health > 100){
         health = 100;
     }

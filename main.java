@@ -17,7 +17,7 @@ public class main extends javax.swing.JFrame
        public static void main(String [] args) throws IOException{
         int year = 0;
         int choice;
-        int focus;
+        int focus = 0;
         int friendnum = 0;
         int count = 0;
         
@@ -97,7 +97,6 @@ public class main extends javax.swing.JFrame
             }
             if (mainChar.isAlive()){
                 year++;
-                focus = 0;
                 mainChar.Age();
                 dad.Age();
                 mom.Age();
@@ -166,6 +165,25 @@ public class main extends javax.swing.JFrame
                 for (int i = siblingNum ; i > 0; i--){
                     if (everyoneElse[i - 1].getAge() == 18 && everyoneElse[i - 1].getSmarts() > 65){
                         everyoneElse[i - 1].enroll();
+                    }
+                }
+                if (mainChar.isinCollege() && mainChar.getAge() == 23){
+                    System.out.println("Congrats! You've graduated. Hopefully, this is worthwhile.");
+                    mainChar.deEnroll();
+                    mainChar.graduate();
+                }
+                if (dad.isinCollege() && dad.getAge() == 23){
+                    dad.deEnroll();
+                    dad.graduate();
+                }
+                if (mom.getAge() == 23 && mom.isinCollege()){
+                    mom.deEnroll();
+                    mom.graduate();
+                }
+                for (int i = siblingNum ; i > 0; i--){
+                    if (siblings[i - 1].getAge() == 23 && siblings[i - 1].isinCollege()){
+                        siblings[i - 1].deEnroll();
+                        siblings[i - 1].graduate();
                     }
                 }
                 while(true){
