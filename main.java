@@ -5,21 +5,27 @@
  * Hunter Stewart
  * 1.0
  */
+ 
+
 import java.util.Scanner;
 import java.util.Random;
 import java.io.*;
 import java.util.Arrays;
+
 
 public class main extends javax.swing.JFrame
 {
     public static Scanner reader = new Scanner(System.in);
     public static Random lotto = new Random();
     private static int choice;
+    
+    
        public static void main(String [] args) throws IOException{
         int year = 0;
         int focus = 0;
         int friendnum = 0;
         int count = 0;
+        
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -142,7 +148,7 @@ public class main extends javax.swing.JFrame
                 if (mainChar.getAge() == 18 && mainChar.getSmarts() > 40){
                     choice = 0;
                     System.out.printf("You are 18, and smart enough to get in. Enroll in College?%n%n1.) Yes%n2.) No%n");
-                    choice = reader.nextInt();
+                     
                     if (choice == 1){
                         System.out.println("You've Been Enrolled. Enjoy those student loans!");
                         mainChar.enroll();
@@ -189,7 +195,8 @@ public class main extends javax.swing.JFrame
                 while(true){
                     System.out.printf("%n1.) Next Year%n2.) Set Year Focus%n3.) See Family%n4.) See Random Others%n");
                     System.out.println(mainChar);
-                    choice = reader.nextInt();
+                     
+
                     if (choice == 1){
                         break;
                     }
@@ -206,7 +213,7 @@ public class main extends javax.swing.JFrame
                         else{
                             System.out.printf("%n1.) Go to the Gym%n2.) Read a Book%n3.) Try a new Look%n4.) Get A Job%n");
                         }
-                        choice = reader.nextInt();
+                         
                         if(choice == 1){
                             focus = 1;
                         }
@@ -267,7 +274,7 @@ public class main extends javax.swing.JFrame
                         System.out.print(everyoneElse[num2]);
                         System.out.print(everyoneElse[num3]);
                         System.out.printf("%n1.) Befriend Person 1%n2.) Befriend Person 2%n3.) Befriend Person 3%n4.) Leave Without Saying a Word%n");
-                        choice = reader.nextInt();
+                         
                         if (choice == 1){
                             friends[friendnum] = yourAge[num1];
                             friendnum++;
@@ -337,7 +344,6 @@ public class main extends javax.swing.JFrame
     private void initComponents() {
     
             jScrollPane2 = new javax.swing.JScrollPane();
-            //jTable1 = new javax.swing.JTable();
             jLabel1 = new javax.swing.JLabel();
             jScrollPane3 = new javax.swing.JScrollPane();
             jTable2 = new javax.swing.JTable();
@@ -345,7 +351,7 @@ public class main extends javax.swing.JFrame
             jButton2 = new javax.swing.JButton();
             jButton3 = new javax.swing.JButton();
             jButton4 = new javax.swing.JButton();
-            textArea1 = new java.awt.TextArea();
+            textArea1 = new javax.swing.JTextArea();
     
             
             jScrollPane2.setViewportView(jTable1);
@@ -405,7 +411,7 @@ public class main extends javax.swing.JFrame
 
         jButton4.setText(" See Random Others");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
-            @Override
+            
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
@@ -454,8 +460,10 @@ public class main extends javax.swing.JFrame
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addContainerGap())
             );
-            //textArea1.getAccessibleContext().setAccessibleName("textOut");
-    
+            
+            PrintStream printStream = new PrintStream(new CustomOutputStream(textArea1));
+            System.setOut(printStream);
+            System.setErr(printStream);
     
             pack();
             
@@ -476,16 +484,29 @@ public class main extends javax.swing.JFrame
         choice = 4;
     }     
 
+    public class CustomOutputStream extends OutputStream {
+        private javax.swing.JTextArea textArea;
+     
+        public CustomOutputStream(javax.swing.JTextArea textArea) {
+            this.textArea = textArea;
+        }
+     
+        @Override
+        public void write(int b) throws IOException {
+            textArea.append(String.valueOf((char)b));
+            textArea.setCaretPosition(textArea.getDocument().getLength());
+        }
+}
  
     // Variables declaration                   
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private static javax.swing.JButton jButton1;
+    private static javax.swing.JButton jButton2;
+    private static javax.swing.JButton jButton3;
+    private static javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private java.awt.TextArea textArea1;
+    public static javax.swing.JTable jTable2;
+    private javax.swing.JTextArea textArea1;
 }

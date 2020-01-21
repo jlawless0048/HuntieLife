@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=randomEvents
+comment1.params=m
+comment1.target=void\ getEvent(Character)
+comment2.params=m
+comment2.target=void\ animalAttack(Character)
+comment3.params=m
+comment3.target=void\ alleyAttack(Character)
+numComments=4
