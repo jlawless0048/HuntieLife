@@ -313,6 +313,45 @@ public void Age(){
     }
 }
 
+public void yearlyPay(){
+    if (job.equals("Complicated Chores")){
+        wealth += 100;
+    }
+    else if(job.equals("Normal Chores")){
+        wealth += 50;
+    }
+    else if(job.equals("Good Part-Time-Job")){
+        wealth += 30000;
+    }
+    else if(job.equals("Decent Part-Time-Job")){
+        wealth += 20000;
+    }
+    else if(job.equals("Poor Part-Time-Job")){
+        wealth += 15000;
+    }
+    else if(job.equals("Great Job")){
+        wealth += 100000;
+    }
+    else if(job.equals("Good Job")){
+        wealth += 75000;
+    }
+    else if(job.equals("Decent Job")){
+        wealth += 60000;
+    }
+    else if(job.equals("Poor Job")){
+        wealth += 45000;
+    }
+}
+public void yearlyDeduction(){
+    Random lotto = new Random();
+    if(college){
+        wealth -= 20000 * (lotto.nextInt(3) +  1);
+    }
+    else{
+        wealth -= 10000 * (lotto.nextInt(6) + 1);
+    }
+}
+
 
 public boolean isAlive(){
     return alive;

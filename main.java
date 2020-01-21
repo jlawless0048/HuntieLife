@@ -117,8 +117,35 @@ public class main
                         everyoneElse[i - 1].kill();
                     }
                 }
+                if (main.getAge() == 18 && main.getSmarts() > 40){
+                    choice = 0;
+                    System.out.printf("You are 18, and smart enough to get in. Enroll in College?%n%n1.) Yes%n2.) No%n");
+                    if (choice == 1){
+                        System.out.println("You've Been Enrolled. Enjoy those student loans!");
+                        main.enroll();
+                    }
+                    else{
+                        System.out.println("You've dodged those loans. Hopefully, it's worth it.");
+                    }
+                }
+                if (dad.getAge() == 18 && dad.getSmarts() > 75){
+                    dad.enroll();
+                }
+                if (mom.getAge() == 18 && mom.getSmarts() > 75){
+                    mom.enroll();
+                }
+                for (int i = siblingNum ; i > 0; i--){
+                    if (siblings[i - 1].getAge() == 18 && siblings[i - 1].getSmarts() > 65){
+                        siblings[i - 1].enroll();
+                    }
+                }
+                for (int i = siblingNum ; i > 0; i--){
+                    if (everyoneElse[i - 1].getAge() == 18 && everyoneElse[i - 1].getSmarts() > 65){
+                        everyoneElse[i - 1].enroll();
+                    }
+                }
                 while(true){
-                    System.out.printf("1.) Next Year%n2.) Set Year Focus%n3.) See Family%n4.) See Random Others");
+                    System.out.printf("%n1.) Next Year%n2.) Set Year Focus%n3.) See Family%n4.) See Random Others%n");
                     System.out.println(main);
                     choice = reader.nextInt();
                     if (choice == 1){
@@ -222,6 +249,30 @@ public class main
                     for (int i = 100; i > 0; i--){
                         focusing.focusTime(lotto.nextInt(4) + 1, everyoneElse[i - 1]);
                     }
+                    if (main.getAge() > 18){
+                        main.yearlyPay();
+                        main.yearlyDeduction();
+                    }
+                    if (dad.getAge() > 18){
+                        dad.yearlyPay();
+                        dad.yearlyDeduction();
+                    }
+                    if (mom.getAge() > 18){
+                        mom.yearlyPay();
+                        mom.yearlyDeduction();
+                    }
+                    for (int i = siblingNum ; i > 0; i--){
+                            if(siblings[i - 1].getAge() > 18){
+                                siblings[i - 1].yearlyPay();
+                                siblings[i - 1].yearlyDeduction();
+                            }
+                    }
+                    for (int i = 100; i > 0; i--){
+                            if (everyoneElse[i - 1].getAge() > 18){
+                                everyoneElse[i - 1].yearlyPay();
+                                everyoneElse[i - 1].yearlyDeduction();
+                            }
+                        }
                 }
             }
         }
