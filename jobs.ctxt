@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=jobs
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ jobs\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=character
+comment1.target=void\ getJob(Character)
+numComments=2
