@@ -5,51 +5,21 @@
  * Hunter Stewart
  * 1.0
  */
- 
-
 import java.util.Scanner;
 import java.util.Random;
 import java.io.*;
 import java.util.Arrays;
-
 
 public class main extends javax.swing.JFrame
 {
     public static Scanner reader = new Scanner(System.in);
     public static Random lotto = new Random();
     private static int choice;
-    
-    
        public static void main(String [] args) throws IOException{
         int year = 0;
         int focus = 0;
         int friendnum = 0;
         int count = 0;
-        
-        
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new main().setVisible(true);
-            }
-        });
         
         Character mainChar = Character.createCharacter();
         Character dad = new Character(Character.newFirstMaleName(), mainChar.getlName(), Character.createLooks(), Character.createSmarts(), Character.createCraziness(), Character.createHealth(), Character.createAtheleticism(), "Male", lotto.nextInt(27) + 18, lotto.nextInt(100000));
@@ -148,7 +118,7 @@ public class main extends javax.swing.JFrame
                 if (mainChar.getAge() == 18 && mainChar.getSmarts() > 40){
                     choice = 0;
                     System.out.printf("You are 18, and smart enough to get in. Enroll in College?%n%n1.) Yes%n2.) No%n");
-                     
+                    choice = reader.nextInt();
                     if (choice == 1){
                         System.out.println("You've Been Enrolled. Enjoy those student loans!");
                         mainChar.enroll();
@@ -195,8 +165,7 @@ public class main extends javax.swing.JFrame
                 while(true){
                     System.out.printf("%n1.) Next Year%n2.) Set Year Focus%n3.) See Family%n4.) See Random Others%n");
                     System.out.println(mainChar);
-                     
-
+                    choice = reader.nextInt();
                     if (choice == 1){
                         break;
                     }
@@ -213,7 +182,7 @@ public class main extends javax.swing.JFrame
                         else{
                             System.out.printf("%n1.) Go to the Gym%n2.) Read a Book%n3.) Try a new Look%n4.) Get A Job%n");
                         }
-                         
+                        choice = reader.nextInt();
                         if(choice == 1){
                             focus = 1;
                         }
@@ -274,7 +243,7 @@ public class main extends javax.swing.JFrame
                         System.out.print(everyoneElse[num2]);
                         System.out.print(everyoneElse[num3]);
                         System.out.printf("%n1.) Befriend Person 1%n2.) Befriend Person 2%n3.) Befriend Person 3%n4.) Leave Without Saying a Word%n");
-                         
+                        choice = reader.nextInt();
                         if (choice == 1){
                             friends[friendnum] = yourAge[num1];
                             friendnum++;
@@ -333,180 +302,6 @@ public class main extends javax.swing.JFrame
         System.out.println(mainChar.getDeath());
         System.out.println(mainChar);
     }
-    
-        /**
-         * Creates new form main
-         */
-    public main() {
-            initComponents();
-    }
-    
-    private void initComponents() {
-    
-            jScrollPane2 = new javax.swing.JScrollPane();
-            jLabel1 = new javax.swing.JLabel();
-            jScrollPane3 = new javax.swing.JScrollPane();
-            jTable2 = new javax.swing.JTable();
-            jButton1 = new javax.swing.JButton();
-            jButton2 = new javax.swing.JButton();
-            jButton3 = new javax.swing.JButton();
-            jButton4 = new javax.swing.JButton();
-            textArea1 = new javax.swing.JTextArea();
-    
-            
-            jScrollPane2.setViewportView(jTable1);
-    
-            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    
-            jLabel1.setText("Huntie Life 1.0");
-    
-            jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                    {"Name", null},
-                    {"Age", null},
-                    {"Wealth", null},
-                    {"Looks", null},
-                    {"Smarts", null},
-                    {"Atheleticism", null},
-                    {"Health", null}
-                },
-                new String [] {
-                    "Stat", "Value"
-                }
-            ) {
-                boolean[] canEdit = new boolean [] {
-                    false, false
-                };
-    
-                public boolean isCellEditable(int rowIndex, int columnIndex) {
-                    return canEdit [columnIndex];
-                }
-            });
-            jScrollPane3.setViewportView(jTable2);
-    
-                   jButton1.setText("Next Year");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Year Focus");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("See Family");
-        jButton3.setToolTipText("");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText(" See Random Others");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-            textArea1.setEditable(false);
-    
-            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-            getContentPane().setLayout(layout);
-            layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton2)
-                        .addComponent(jButton3)
-                        .addComponent(jButton4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            );
-            layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 10, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton1)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addContainerGap())
-            );
-            
-            PrintStream printStream = new PrintStream(new CustomOutputStream(textArea1));
-            System.setOut(printStream);
-            System.setErr(printStream);
-    
-            pack();
-            
-            
-    }                       
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        choice = 1;
-    }  
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        choice = 2;
-    }                                        
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        choice = 3;
-    }                                        
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        choice = 4;
-    }     
-
-    public class CustomOutputStream extends OutputStream {
-        private javax.swing.JTextArea textArea;
-     
-        public CustomOutputStream(javax.swing.JTextArea textArea) {
-            this.textArea = textArea;
-        }
-     
-        @Override
-        public void write(int b) throws IOException {
-            textArea.append(String.valueOf((char)b));
-            textArea.setCaretPosition(textArea.getDocument().getLength());
-        }
 }
- 
-    // Variables declaration                   
-    private static javax.swing.JButton jButton1;
-    private static javax.swing.JButton jButton2;
-    private static javax.swing.JButton jButton3;
-    private static javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    public static javax.swing.JTable jTable2;
-    private javax.swing.JTextArea textArea1;
-}
+    
+    
